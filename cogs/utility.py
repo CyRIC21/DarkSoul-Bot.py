@@ -12,7 +12,7 @@ from discord.ext import commands
 '''This is a sample cog (class) file'''
 
 
-class Sample:  # Replace "Sample" with the name of the module here and at bottom as well
+class Utility:  # Replace "Sample" with the name of the module here and at bottom as well
 
     def __init__(self, bot):
         self.bot = bot
