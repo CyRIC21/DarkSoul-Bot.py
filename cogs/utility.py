@@ -70,4 +70,4 @@ class Utility:  # Replace "Sample" with the name of the module here and at botto
 
 
 def setup(bot):
-    bot.add_cog(Sample(bot))
+    bot.add_cog(Utility(bot))
