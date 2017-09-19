@@ -41,4 +41,4 @@ class Misc:
         await ctx.send(embed=emb)
         
 def setup(bot):
-	bot.add_cog(misc(bot))
+	bot.add_cog(Misc(bot))
