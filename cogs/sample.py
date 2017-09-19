@@ -42,7 +42,7 @@ class Sample:  # Replace "Sample" with the name of the module here and at bottom
             await ctx.message.delete(more_details)
             return
 
-        emb = discord.Embed(colour=0xdd352f)
+        emb = discord.Embed()
         emb.title = wik.title
         emb.url = wik.url
         textList = textwrap.wrap(wik.content, 500, break_long_words=True, replace_whitespace=False)
@@ -57,8 +57,7 @@ class Sample:  # Replace "Sample" with the name of the module here and at bottom
         av = member.avatar_url
         if ".gif" in av:
             av += "&f=.gif"
-        color = await ctx.get_dominant_color(av)
-        em = discord.Embed(url=av, colour=0xdd352f)
+        em = discord.Embed(url=av)
         em.set_author(name=str(member), icon_url=av)
         em.set_image(url=av)
         await ctx.send(embed=em)
