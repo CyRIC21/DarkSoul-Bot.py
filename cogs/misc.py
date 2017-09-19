@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from ext.utility import parse_equation
 from ext.colours import ColorNames
 from sympy import solve
 from PIL import Image
