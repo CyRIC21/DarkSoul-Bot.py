@@ -6,7 +6,7 @@ bot.load_extension("cogs.utility")
 bot.load_extension("cogs.misc")
 
 @bot.event
-asyn​c def on_ready():
+async def on_ready():
   print('Bot is online!')
   
 @bot.command(name='presence')
