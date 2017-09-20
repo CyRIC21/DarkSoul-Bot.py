@@ -1,17 +1,15 @@
+import asyncio
+import aiohttp
 import discord
 from discord.ext import commands
-from PIL import Image
-import asyncio
-import random
-import emoji
-import copy
-import io
-import aiohttp
+
 
 class Misc:
+    """Misc commands"""
+    
     def __init__(self,bot):
         self.bot = bot
-	self.session = aiohttp.ClientSession(loop=self.loop)
+        self.session = aiohttp.ClientSession(loop=self.loop)
     @commands.command()
     async def urban(self, ctx, *, search_terms : str):
         '''Searches Up a Term in Urban Dictionary'''
@@ -41,6 +39,6 @@ class Misc:
         else:
             emb.title = "Search term not found."
         await ctx.send(embed=emb)
-        
+
 def setup(bot):
 	bot.add_cog(Misc(bot))
