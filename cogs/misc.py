@@ -8,7 +8,7 @@ import copy
 import io
 import aiohttp
 
-class Misc(bot):
+class Misc:
     def __init__(self,bot):
         self.bot = bot
     @commands.command()
