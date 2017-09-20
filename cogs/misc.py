@@ -9,7 +9,7 @@ class Misc:
 
     def __init__(self,bot):
         self.bot = bot
-        self.loop = asyncio.AbstractEventLoop.run_until_complete(future)
+        #self.loop = asyncio.AbstractEventLoop.run_until_complete(future)
         self.session = aiohttp.ClientSession()
     @commands.command()
     async def urban(self, ctx, *, search_terms : str):
