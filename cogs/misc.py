@@ -11,6 +11,7 @@ import aiohttp
 class Misc:
     def __init__(self,bot):
         self.bot = bot
+	self.session = aiohttp.ClientSession(loop=self.loop)
     @commands.command()
     async def urban(self, ctx, *, search_terms : str):
         '''Searches Up a Term in Urban Dictionary'''
@@ -25,7 +26,7 @@ class Misc:
             pos = 0
         search_terms = "+".join(search_terms)
         url = "http://api.urbandictionary.com/v0/define?term=" + search_terms
-        async with ctx.session.get(url) as r:
+        async with self.session.get(url) as r:
             result = await r.json()
         emb = discord.Embed()
         emb.color = await ctx.get_dominant_color(url=ctx.message.author.avatar_url)
