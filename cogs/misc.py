@@ -10,7 +10,7 @@ import aiohttp
 
 class Misc(bot):
     def __init__(self,bot):
-	self.bot = bot
+        self.bot = bot
     @commands.command()
     async def urban(self, ctx, *, search_terms : str):
         '''Searches Up a Term in Urban Dictionary'''
