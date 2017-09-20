@@ -6,10 +6,11 @@ from discord.ext import commands
 
 class Misc:
     """Misc commands"""
-    
+
     def __init__(self,bot):
         self.bot = bot
-        self.session = aiohttp.ClientSession(loop=self.loop)
+        self.loop = asyncio.AbstractEventLoop.run_until_complete(future)
+        self.session = aiohttp.ClientSession()
     @commands.command()
     async def urban(self, ctx, *, search_terms : str):
         '''Searches Up a Term in Urban Dictionary'''
