@@ -28,7 +28,7 @@ class Misc:
         async with self.session.get(url) as r:
             result = await r.json()
         emb = discord.Embed()
-        emb.color = await ctx.get_dominant_color(url=ctx.message.author.avatar_url)
+        emb.color = discord.Colour(value=0xBADA55)
         if result.get('list'):
             definition = result['list'][definition_number]['definition']
             example = result['list'][definition_number]['example']
