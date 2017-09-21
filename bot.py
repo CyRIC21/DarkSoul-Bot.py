@@ -1,5 +1,6 @@
 import discord
 import os
+import io
 from discord.ext import commands
 bot = commands.Bot(command_prefix='?',description="DarkSoul-Bot\nOwner: Free TNT#5796\n\nHelp Commands",owner_id=292690616285134850)
 bot.load_extension("cogs.utility")
@@ -40,7 +41,8 @@ async def ping(ctx):
 @bot.command()
 async def invite(ctx):
     await ctx.send('https://discordapp.com/oauth2/authorize?client_id=358300617665544194&scope=bot&permissions=66186303')
-def cleanup_code(self, content):
+    
+def cleanup_code(content):
     """Automatically removes code blocks from the code."""
     # remove ```py\n```
     if content.startswith('```') and content.endswith('```'):
@@ -49,32 +51,33 @@ def cleanup_code(self, content):
     # remove `foo`
     return content.strip('` \n')
 
-def get_syntax_error(self, e):
+def get_syntax_error(e):
     if e.text is None:
         return f'```py\n{e.__class__.__name__}: {e}\n```'
     return f'```py\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e}```'
-async def edit_to_codeblock(self, ctx, body):
+  
+async def edit_to_codeblock(ctx, body):
     msg = f'```py\n{body}\n```'
     await ctx.message.edit(content=msg)
+
 @commands.command(pass_context=True, hidden=True, name='eval')
 @commands.is_owner()
-async def _eval(self, ctx, *, body: str):
+async def _eval(ctx, *, body: str):
     """Evaluates a code"""
 
     env = {
-       'bot': self.bot,
+       'bot': bot,
        'ctx': ctx,
        'channel': ctx.channel,
        'author': ctx.author,
        'guild': ctx.guild,
-       'message': ctx.message,
-       '_': self._last_result
+       'message': ctx.message
     }
 
     env.update(globals())
 
-    body = self.cleanup_code(body)
-    await self.edit_to_codeblock(ctx, body)
+    body = cleanup_code(body)
+    await edit_to_codeblock(ctx, body)
     stdout = io.StringIO()
     err = out = None
 
@@ -95,8 +98,8 @@ async def _eval(self, ctx, *, body: str):
        err = await ctx.send(f'```py\n{value}{traceback.format_exc()}\n```')
     else:
        value = stdout.getvalue()
-       if self.bot.token in value:
-           value = value.replace(self.bot.token,"[EXPUNGED]")
+       if os.environ.get('TOKEN') in value:
+           value = value.replace(os.environ.get('TOKEN'),"[EXPUNGED]")
        if ret is None:
            if value:
                try:
@@ -105,6 +108,8 @@ async def _eval(self, ctx, *, body: str):
                    out = await ctx.send('Result was too long to send.')
        else:
            self._last_result = ret
+           if os.environ.get('TOKEN') in ret:
+               ret = ret.replace(os.environ.get('TOKEN'),"[EXPUNGED]")
            try:
                out = await ctx.send(f'```py\n{value}{ret}\n```')
            except:
