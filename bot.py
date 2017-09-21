@@ -41,7 +41,64 @@ async def ping(ctx):
 async def invite(ctx):
     await ctx.send('https://discordapp.com/oauth2/authorize?client_id=358300617665544194&scope=bot&permissions=66186303')
     
+@commands.command(pass_context=True, hidden=True, name='eval')
+@commands.is_owner()
+    async def _eval(self, ctx, *, body: str):
+        """Evaluates a code"""
 
+        env = {
+            'bot': self.bot,
+            'ctx': ctx,
+            'channel': ctx.channel,
+            'author': ctx.author,
+            'guild': ctx.guild,
+            'message': ctx.message,
+            '_': self._last_result
+        }
+
+        env.update(globals())
+
+        body = self.cleanup_code(body)
+        await self.edit_to_codeblock(ctx, body)
+        stdout = io.StringIO()
+        err = out = None
+
+        to_compile = f'async def func():\n{textwrap.indent(body, "  ")}'
+
+        try:
+            exec(to_compile, env)
+        except Exception as e:
+            err = await ctx.send(f'```py\n{e.__class__.__name__}: {e}\n```')
+            return await err.add_reaction('\u2049')
+
+        func = env['func']
+        try:
+            with redirect_stdout(stdout):
+                ret = await func()
+        except Exception as e:
+            value = stdout.getvalue()
+            err = await ctx.send(f'```py\n{value}{traceback.format_exc()}\n```')
+        else:
+            value = stdout.getvalue()
+            if self.bot.token in value:
+                value = value.replace(self.bot.token,"[EXPUNGED]")
+            if ret is None:
+                if value:
+                    try:
+                        out = await ctx.send(f'```py\n{value}\n```')
+                    except:
+                        out = await ctx.send('Result was too long to send.')
+            else:
+                self._last_result = ret
+                try:
+                    out = await ctx.send(f'```py\n{value}{ret}\n```')
+                except:
+                    out = await ctx.send('Result was too long to send.')
+
+        if out:
+            await out.add_reaction('\u2705')
+        if err:
+            await err.add_reaction('\u2049')
 
 
 if not os.environ.get('TOKEN'):
