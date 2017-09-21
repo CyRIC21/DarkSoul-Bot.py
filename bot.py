@@ -61,7 +61,7 @@ async def edit_to_codeblock(ctx, body):
     msg = f'```py\n{body}\n```'
     await ctx.message.edit(content=msg)
 
-@commands.command(name='eval')
+@bot.command(name='eval')
 @commands.is_owner()
 async def _eval(ctx, *, body: str):
     """Evaluates a code"""
