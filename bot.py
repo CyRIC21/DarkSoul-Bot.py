@@ -57,7 +57,7 @@ def get_syntax_error(e):
         return f'```py\n{e.__class__.__name__}: {e}\n```'
     return f'```py\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e}```'
   
-async def edit_to_codeblock(ctx, body):
+async def (ctx, body):
     msg = f'```py\n{body}\n```'
     await ctx.message.edit(content=msg)
 
