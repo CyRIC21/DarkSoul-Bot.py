@@ -59,13 +59,12 @@ async def _eval(ctx, *, body: str):
         """Evaluates a code"""
 
         env = {
-            'bot': self.bot,
+            'bot': bot,
             'ctx': ctx,
             'channel': ctx.channel,
             'author': ctx.author,
             'guild': ctx.guild,
             'message': ctx.message,
-            '_': self._last_result
         }
 
         env.update(globals())
