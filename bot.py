@@ -8,19 +8,13 @@ bot.load_extension("cogs.utility")
 bot.load_extension("cogs.misc")
 
 
-    def __init__(self, bot):
-        self.bot = bot
-        self._last_result = None
-        self.sessions = set()
+def cleanup_code(content):
+    """Automatically removes code blocks from the code."""
+    # remove ```py\n```
+    if content.startswith('```') and content.endswith('```'):
+        return '\n'.join(content.split('\n')[1:-1])
 
-    def cleanup_code(self, content):
-        """Automatically removes code blocks from the code."""
-        # remove ```py\n```
-        if content.startswith('```') and content.endswith('```'):
-            return '\n'.join(content.split('\n')[1:-1])
-
-        # remove `foo`
-        return content.strip('` \n')
+    return content.strip('` \n')
 
 @bot.event
 async def on_ready():
@@ -61,7 +55,7 @@ async def invite(ctx):
 
 
 @bot.command(pass_context=True, hidden=True, name='eval')
-async def _eval(self, ctx, *, body: str):
+async def _eval(ctx, *, body: str):
         """Evaluates a code"""
 
         env = {
@@ -76,7 +70,7 @@ async def _eval(self, ctx, *, body: str):
 
         env.update(globals())
 
-        body = self.cleanup_code(body)
+        body = cleanup_code(body)
         stdout = io.StringIO()
 
         to_compile = f'async def func():\n{textwrap.indent(body, "  ")}'
