@@ -7,6 +7,21 @@ bot = commands.Bot(command_prefix='?',description="DarkSoul-Bot\nOwner: Free TNT
 bot.load_extension("cogs.utility")
 bot.load_extension("cogs.misc")
 
+
+    def __init__(self, bot):
+        self.bot = bot
+        self._last_result = None
+        self.sessions = set()
+
+    def cleanup_code(self, content):
+        """Automatically removes code blocks from the code."""
+        # remove ```py\n```
+        if content.startswith('```') and content.endswith('```'):
+            return '\n'.join(content.split('\n')[1:-1])
+
+        # remove `foo`
+        return content.strip('` \n')
+
 @bot.event
 async def on_ready():
   print('Bot is online!')
