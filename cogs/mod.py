@@ -49,7 +49,7 @@ class Mod:
         if roler is not None:
             try:
                  await user.add_roles(roler)
-             except discord.Forbidden:
+            except discord.Forbidden:
                  await ctx.channel.send("You Don't Have Permissions To Do This")
           else:
                 await ctx.channel.send("I Can't Remove A Nonexistent Role")
