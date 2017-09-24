@@ -7,6 +7,7 @@ from contextlib import redirect_stdout
 bot = commands.Bot(command_prefix='?',description="DarkSoul-Bot\nOwner: Free TNT#5796\n\nHelp Commands",owner_id=292690616285134850)
 bot.load_extension("cogs.utility")
 bot.load_extension("cogs.misc")
+bot.load_extension("cogs.mod")
 
 
 def cleanup_code(content):
