@@ -1,5 +1,6 @@
 import discord
 import os
+import traceback
 import textwrap
 import io
 from discord.ext import commands
