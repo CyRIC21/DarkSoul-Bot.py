@@ -31,7 +31,7 @@ class Mod:
         
     @commands.command()
     @commands.has_permissions(manage_roles = True)
-    async def addrole(self, ctx, user: discord.Member, role: str)
+    async def addrole(self, ctx, user: discord.Member, role: str):
           roler = discord.utils.get(ctx,guild.roles, name=role)
           if roler is not None:
               try:
