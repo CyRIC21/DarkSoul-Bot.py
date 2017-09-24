@@ -23,7 +23,7 @@ class Mod:
 
 
     @commands.command()
-    @commands.has_permisson(kick_members = True)
+    @commands.has_permissions(kick_members = True)
     async def ban(self, ctx, user: discord.Member):
         await ctx.channel.send(f"Banned {user.name}.")
         await user.ban()
