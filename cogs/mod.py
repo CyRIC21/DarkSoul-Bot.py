@@ -15,7 +15,7 @@ class Mod:
         self.bot = bot
 
     @commands.command()
-    @commands.has_permisson(kick_members = True)
+    @commands.has_permissions(kick_members = True)
     async def kick(self, ctx, user: discord.Member):
         await ctx.channel.send(f"RIP {user.name}.")
         await user.kick()
