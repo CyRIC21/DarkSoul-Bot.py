@@ -51,8 +51,8 @@ class Mod:
                  await user.add_roles(roler)
             except discord.Forbidden:
                  await ctx.channel.send("You Don't Have Permissions To Do This")
-          else:
-                await ctx.channel.send("I Can't Remove A Nonexistent Role")
+        else:
+             await ctx.channel.send("I Can't Remove A Nonexistent Role")
                
                
     @commands.command()
