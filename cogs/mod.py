@@ -68,7 +68,7 @@ class Mod:
     @commands.has_permission(ban_members = True)
     async def unmute(self, ctx, user: discord.Member):
         
-        await ctx.channel.set_permisson(user, send messages=True)
+        await ctx.channel.set_permissions(user, send messages=True)
         await ctx.channel.send(user.mention + 'Has Been Unmuted.')
         
         
