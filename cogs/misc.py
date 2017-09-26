@@ -41,5 +41,15 @@ class Misc:
             emb.title = "Search term not found."
         await ctx.send(embed=emb)
 
+    @commands.command()
+    async def choose(self, ctx, *choices: commands.clean_content):
+        """Chooses between multiple choices.
+        To denote multiple choices, you should use double quotes.
+        """
+        if len(choices) < 2:
+            return await ctx.send('Not enough choices to pick from.')
+
+        await ctx.send(rng.choice(choices))
+
 def setup(bot):
 	bot.add_cog(Misc(bot))
