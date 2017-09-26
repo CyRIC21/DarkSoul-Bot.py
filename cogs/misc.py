@@ -1,5 +1,6 @@
 import asyncio
 import aiohttp
+import random as rng
 import discord
 from discord.ext import commands
 
