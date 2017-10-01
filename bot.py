@@ -23,6 +23,12 @@ def cleanup_code(content):
 async def on_ready():
   print('Bot is online!')
   
+@bot.command(name='say')
+async def say(ctx, message:str):
+"""Say Something As The Bot"""
+    await ctx.send(message)
+ 
+
 @bot.command(name='presence')
 @commands.is_owner()
 async def _set(ctx, Type=None,*,thing=None):
