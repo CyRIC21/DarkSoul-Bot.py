@@ -25,7 +25,7 @@ async def on_ready():
   
 @bot.command(name='say')
 async def say(ctx, message:str):
-"""Say Something As The Bot"""
+  """Say Something As The Bot"""
     await ctx.send(message)
  
 
