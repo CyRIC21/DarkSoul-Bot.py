@@ -70,8 +70,17 @@ class Mod:
         
         await ctx.channel.set_permissions(user, send_messages=True)
         await ctx.channel.send(user.mention + 'Has Been Unmuted.')
-        
-        
+       
+
+    @commands.command(pass_context = True)
+    async def warn(self, ctx, user: discord.Member=None, reason=None):
+        '''Warn a member'''
+        warning = 'You have been warned in **{}** by **{}** for: **{}**'
+        server = ctx.message.server
+        author = ctx.message.author
+        await self.ctx.send('**{}** has been warned'.format(user))
+        await self.ctx.send_message(user, warning.format(server, author, reason))
+        await self.ctx.delete_message(ctx.message)
         
         
         
