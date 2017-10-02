@@ -76,7 +76,7 @@ class Mod:
     async def warn(self, ctx, user: discord.Member=None, reason=None):
         '''Warn a member'''
         warning = 'You have been warned in **{}** by **{}** for: **{}**'
-        server = ctx.message.server
+        server = ctx.message.guild
         author = ctx.message.author
         await self.ctx.send('**{}** has been warned'.format(user))
         await self.ctx.send_message(user, warning.format(server, author, reason))
