@@ -5,7 +5,7 @@ import textwrap
 import io
 from discord.ext import commands
 from contextlib import redirect_stdout
-bot = commands.Bot(command_prefix='?',description="Creeper's Bot\nOwner: CreeperSlayer11#7929\n\nHelp Commands",owner_id=292690616285134850)
+bot = commands.Bot(command_prefix='?',description="Creeper's Bot\nOwner: CreeperSlayer11#7929\n\nHelp Commands",owner_id=311970805342928896)
 bot.load_extension("cogs.utility")
 bot.load_extension("cogs.misc")
 bot.load_extension("cogs.mod")
