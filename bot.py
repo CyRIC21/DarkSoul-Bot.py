@@ -129,7 +129,7 @@ async def invite(ctx):
  #   print("        \/             \/     \/|__|        \/           \/          \/             ")
     # laziness
           
-    print("Logging in to Discord...")
+  #  print("Logging in to Discord...")
                 
 #if not os.environ.get('TOKEN'):
 #  print("no token found REEEE!")
