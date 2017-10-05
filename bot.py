@@ -87,7 +87,7 @@ async def invite(ctx):
 
       #  env.update(globals())
 
-        body = cleanup_code(body)
+       # body = cleanup_code(body)
         stdout = io.StringIO()
 
         to_compile = f'async def func():\n{textwrap.indent(body, "  ")}'
