@@ -112,11 +112,11 @@ async def invite(ctx):
       #      except:
      #           pass
 
-            if ret is None:
-                if value:
-                    await ctx.send(f'```py\n{value}\n```')
-            else:
-                await ctx.send(f'```py\n{value}{ret}\n```')
+     #       if ret is None:
+        #        if value:
+                #    await ctx.send(f'```py\n{value}\n```')
+          #  else:
+           #     await ctx.send(f'```py\n{value}{ret}\n```')
 
 
 # run as "main" method
