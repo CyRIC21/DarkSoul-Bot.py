@@ -120,7 +120,7 @@ async def invite(ctx):
 
 
 # run as "main" method
-if __name__ == "__main__":
+#if __name__ == "__main__":
     print("_________                                          /\        __________        __   ")
     print("\_   ___ \_______   ____   ____ ______   __________)/ ______ \______   \ _____/  |_ ")
     print("/    \  \/\_  __ \_/ __ \_/ __ \\____ \_/ __ \_  __ \/  ___/  |    |  _//  _ \   __\")
@@ -131,7 +131,7 @@ if __name__ == "__main__":
           
     print("Logging in to Discord...")
                 
-if not os.environ.get('TOKEN'):
-  print("no token found REEEE!")
-bot.run(os.environ.get('TOKEN').strip('\"'))
+#if not os.environ.get('TOKEN'):
+#  print("no token found REEEE!")
+#bot.run(os.environ.get('TOKEN').strip('\"'))
  
