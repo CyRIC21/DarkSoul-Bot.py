@@ -134,5 +134,5 @@ async def invite(ctx):
 #if not os.environ.get('TOKEN'):
 #  print("no token found REEEE!")
 #bot.run(os.environ.get('TOKEN').strip('\"'))
- 
+ #
 #
