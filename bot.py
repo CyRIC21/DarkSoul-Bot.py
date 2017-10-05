@@ -81,7 +81,7 @@ async def ping(ctx):
 @bot.command()
 async def invite(ctx):
     await ctx.send("**Invite me to your server!**"
-    await ctx.send('https://discordapp.com/oauth2/authorize?client_id=364372021422981120&scope=bot&permissions=66186303')
+#     await ctx.send('https://discordapp.com/oauth2/authorize?client_id=364372021422981120&scope=bot&permissions=66186303')
     
 
 
