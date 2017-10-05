@@ -90,7 +90,7 @@ async def invite(ctx):
        # body = cleanup_code(body)
       #  stdout = io.StringIO()
 
-        to_compile = f'async def func():\n{textwrap.indent(body, "  ")}'
+      #  to_compile = f'async def func():\n{textwrap.indent(body, "  ")}'
 
         try:
             exec(to_compile, env)
