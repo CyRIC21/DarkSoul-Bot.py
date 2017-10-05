@@ -85,7 +85,7 @@ async def invite(ctx):
     
 
 
-        env.update(globals())
+      #  env.update(globals())
 
         body = cleanup_code(body)
         stdout = io.StringIO()
