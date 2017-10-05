@@ -85,20 +85,6 @@ async def invite(ctx):
     
 
 
-@bot.command(pass_context=True, hidden=True, name='eval')
-@commands.is_owner()
-async def _eval(ctx, *, body:str):
-        """Evaluates a code"""
-
-        env = {
-            'bot': bot,
-            'ctx': ctx,
-            'channel': ctx.channel,
-            'author': ctx.author,
-            'guild': ctx.guild,
-            'message': ctx.message,
-        }
-
         env.update(globals())
 
         body = cleanup_code(body)
