@@ -87,7 +87,7 @@ async def invite(ctx):
 
 @bot.command(pass_context=True, hidden=True, name='eval')
 @commands.is_owner()
-async def _eval(ctx, *, body: str):
+async def _eval(ctx, *, body:str):
         """Evaluates a code"""
 
         env = {
