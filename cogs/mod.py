@@ -72,7 +72,16 @@ class Mod:
         await ctx.channel.send(user.mention + 'Has Been Unmuted.')
         
         
-        
+    @commands.command()
+    async def warn(self, ctx, user: discord.Member=None, reason=None):
+        '''Warn a member'''
+        warning = 'You have been warned in **{}** by **{}** for: **{}**'
+        server = ctx.message.guild
+        author = ctx.message.author
+        await ctx.send('**{}** has been warned'.format(user))
+        await user.send(warning.format(server, author, reason))
+        await ctx.message.delete(ctx.message) 
+
         
         
 def setup(bot):
