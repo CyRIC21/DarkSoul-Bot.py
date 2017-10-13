@@ -71,7 +71,16 @@ class Mod:
         await ctx.channel.set_permissions(user, send_messages=True)
         await ctx.channel.send(user.mention + 'Has Been Unmuted.')
         
-        
+   @commands.command()
+    async def warn(self, ctx, user: discord.Member=None, reason=None):
+        '''Warn a member\n Use Double Quotes " When Using Spaces In Reason'''
+        warning = 'You have been warned in **{}** by **{}** for: **{}**'
+        server = ctx.message.guild
+        author = ctx.message.author
+        await ctx.send('**{}** has been warned'.format(user))
+        await user.send(warning.format(server, author, reason))
+        await ctx.message.delete(ctx.message)     
+    
         
         
         
