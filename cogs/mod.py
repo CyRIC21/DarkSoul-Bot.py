@@ -78,9 +78,9 @@ class Mod:
         warning = 'You have been warned in **{}** by **{}** for: **{}**'
         server = ctx.message.guild
         author = ctx.message.author
-        await self.ctx.send('**{}** has been warned'.format(user))
-        await self.messagable.send(user, warning.format(server, author, reason))
-        await self.ctx.delete_message(ctx.message)
+        await ctx.send('**{}** has been warned'.format(user))
+        await user.send(user, warning.format(server, author, reason))
+        await ctx.delete_message(ctx.message)
 
         
         
