@@ -74,7 +74,7 @@ class Mod:
         
     @commands.command()
     async def warn(self, ctx, user: discord.Member=None, reason=None):
-        '''Warn a member'''
+        '''Warn a member\n Use Double Quotes " When Using Spaces In Reason'''
         warning = 'You have been warned in **{}** by **{}** for: **{}**'
         server = ctx.message.guild
         author = ctx.message.author
