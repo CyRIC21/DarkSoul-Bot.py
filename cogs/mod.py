@@ -80,7 +80,7 @@ class Mod:
         author = ctx.message.author
         await ctx.send('**{}** has been warned'.format(user))
         await user.send(user, warning.format(server, author, reason))
-        await ctx.delete_message(ctx.message)
+        await ctx.message.delete(ctx.message)
 
         
         
