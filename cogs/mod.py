@@ -73,7 +73,7 @@ class Mod:
        
 
     @commands.command()
-    async def warn(self, ctx, user: discord.Member=None, reason=None):
+    async def warn(self, ctx, user: discord.Member=None, reason=None, *, reason: str):
         '''Warn a member'''
         warning = 'You have been warned in **{}** by **{}** for: **{}**'
         server = ctx.message.guild
