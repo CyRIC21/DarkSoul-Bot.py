@@ -24,7 +24,7 @@ async def on_ready():
   print('Bot is online!')
   
 @bot.command(name='say')
-async def say(ctx, message:str):
+async def say(ctx, message: str):
     """Say Something As The Bot"""
     await ctx.send(message)
  
