@@ -3,3 +3,14 @@ wikipedia
 colorthief
 psutil
 emoji
+aiohttp
+websockets
+chardet
+requests
+Pillow
+urllib3
+pyparsing
+pyfiglet
+beautifulsoup4
+lxml
+urbandict
