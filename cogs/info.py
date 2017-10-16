@@ -118,7 +118,7 @@ class Information:
         icon = ctx.guild.icon_url
         em = discord.Embed(url=icon)
         em.colour = (discord.Colour(0xed791d))
-        em.set_author(name=ctx.guild.author.name, icon_url=icon)
+        em.set_author(name=ctx.guild.guilder.name, icon_url=icon)
         em.set_image(url=icon)
         try:
             await ctx.send(embed=em)
