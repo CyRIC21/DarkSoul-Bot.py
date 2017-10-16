@@ -9,6 +9,7 @@ bot = commands.Bot(command_prefix='#',description="DarkSoul-Bot\nOwner: Free TNT
 bot.load_extension("cogs.utility")
 bot.load_extension("cogs.misc")
 bot.load_extension("cogs.mod")
+bot.load_extension("cogs.info")
 
 
 def cleanup_code(content):
