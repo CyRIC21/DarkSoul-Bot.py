@@ -111,21 +111,6 @@ class Information:
         em.description = "I'm Grok is a multipurpose open source discord bot written in python using the discord.py library. It is currently under development and has many people working on it as a community project. The commands that the bot will have will vary from utility/moderation to miscellaneous commands such as game statistics (CR/BS). Join the support guild [here](https://discord.gg/nzqmT2D) for updates and to interact with the development team."
         await ctx.send(embed=em)
 
-    @commands.command(aliases=['av'])
-    async def avatar(self, ctx, *, member : discord.Member=None):
-        """Returns someone's avatar, or your own"""
-        member = member or ctx.author
-        av = member.avatar_url
-        if ".gif" in av:
-            av += "&f=.gif"
-        em = discord.Embed(url=av)
-        em.colour = (discord.Colour(0xed791d))
-        em.set_author(name=str(member), icon_url=av)
-        em.set_image(url=av)
-        try:
-            await ctx.send(embed=em)
-        except:
-            return
 
     @commands.command(aliases=['servericon'], no_pm=True)
     async def serverlogo(self, ctx):
