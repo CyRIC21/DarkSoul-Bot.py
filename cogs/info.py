@@ -103,37 +103,61 @@ class Information:
 
         await ctx.send(embed=em)
 
-    @commands.command()
-    async def info(self, ctx):
-        '''Get information about the bot.'''
-        em = self.bot.bot.current_stats
-        em._author['name'] = "Dark$oul Bot - Info"
-        em.description = "I'm Grok is a multipurpose open source discord bot written in python using the discord.py library. The commands that the bot will have will vary from utility/moderation to miscellaneous commands such as game statistics (CR/BS). Join the support guild [here](https://discord.gg/xAFbcWn) for updates and to interact with the development team."
-        await ctx.send(embed=em)
 
+    @commands.command(aliases=['bot', 'info'])
+    async def about(self, ctx):
+        '''See information about the bot.'''
+
+        embed = discord.Embed()
+        embed.url = 'https://discord.gg/xAFbcWn'
+
+        embed.set_author(name='Dark$oul Bot', icon_url=ctx.author.avatar_url)
+
+        total_members = sum(1 for _ in self.bot.get_all_members())
+        total_online = len({m.id for m in self.bot.get_all_members() if m.status is discord.Status.online})
+        total_unique = len(self.bot.users)
+
+        voice_channels = []
+        text_channels = []
+        for guild in self.bot.guilds:
+            voice_channels.extend(guild.voice_channels)
+            text_channels.extend(guild.text_channels)
+
+        text = len(text_channels)
+        voice = len(voice_channels)
+        dm = len(self.bot.private_channels)
+
+        now = datetime.datetime.utcnow()
+        delta = now - self.bot.uptime
+        hours, remainder = divmod(int(delta.total_seconds()), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        days, hours = divmod(hours, 24)
+
+        fmt = '{h}h {m}m {s}s'
+        if days:
+            fmt = '{d}d ' + fmt
+        uptime = fmt.format(d=days, h=hours, m=minutes, s=seconds)
+
+        github = '[Click Here](https://github.com/freetnt5852/darksoul-bot/)'
+        server = '[Click Here](https://discord.gg/xAFbcWn)'
+
+
+        embed.add_field(name='Author', value='Free TNT#5796')
+        embed.add_field(name='Uptime', value=uptime)
+        embed.add_field(name='Guilds', value=len(self.bot.guilds))
+        embed.add_field(name='Members', value=f'{total_unique} total\n{total_online} online')
+        embed.add_field(name='Channels', value=f'{text} text\n{voice} voice\n{dm} direct')
+        memory_usage = self.bot.process.memory_full_info().uss / 1024**2
+        cpu_usage = self.bot.process.cpu_percent() / psutil.cpu_count()
+        embed.add_field(name='Process', value=f'{memory_usage:.2f} MiB\n{cpu_usage:.2f}% CPU')
+        embed.add_field(name='Github', value=github)
+        embed.add_field(name='Discord', value=server)
+        embed.add_field(name='Website', value=website)
+        embed.set_footer(text=f'Powered by discord.py {discord.__version__}')
+        await ctx.send(embed=embed)        
 
         
-    @commands.command(aliases=['servericon'])
-    async def serverlogo(self, ctx):
-        '''Return the server's icon url.'''
-        icon = ctx.guild.icon_url
-        server = ctx.guild
-        em = discord.Embed(color=color, url=icon)
-        em.set_author(name=server.name, icon_url=icon)
-        em.set_image(url=icon)
-        try:
-            await ctx.send(embed=em)
-        except discord.HTTPException:
-            em_list = await embedtobox.etb(em)
-            for page in em_list:
-                await ctx.send(page)
-            try:
-                async with ctx.session.get(icon) as resp:
-                    image = await resp.read()
-                with io.BytesIO(image) as file:
-                    await ctx.send(file=discord.File(file, 'serverlogo.png'))
-            except discord.HTTPException:
-                await ctx.send(icon)
+
 
 
 def setup(bot):
