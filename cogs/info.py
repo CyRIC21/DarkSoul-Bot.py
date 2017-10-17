@@ -112,6 +112,7 @@ class Information:
         await ctx.send(embed=em)
 
 
+        
     @commands.command(aliases=['servericon'])
     async def serverlogo(self, ctx):
         '''Return the server's icon url.'''
