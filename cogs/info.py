@@ -123,9 +123,6 @@ class Information:
             voice_channels.extend(guild.voice_channels)
             text_channels.extend(guild.text_channels)
 
-        text = len(text_channels)
-        voice = len(voice_channels)
-        dm = len(self.bot.private_channels)
 
 
 
@@ -136,12 +133,33 @@ class Information:
         embed.add_field(name='Author', value='Free TNT#5796')
         embed.add_field(name='Guilds', value=len(self.bot.guilds))
         embed.add_field(name='Members', value=f'{total_unique} total\n{total_online} online')
-        embed.add_field(name='Channels', value=f'{text} text\n{voice} voice\n{dm} direct')
         embed.add_field(name='Github', value=github)
         embed.add_field(name='Discord', value=server)
         embed.set_footer(text=f'Powered by discord.py {discord.__version__}')
         await ctx.send(embed=embed)        
 
+    @commands.command(aliases=['servericon'])
+    async def serverlogo(self, ctx):
+        '''Return the server's icon url.'''
+        icon = ctx.guild.icon_url
+        color = await ctx.get_dominant_color(icon)
+        server = ctx.guild
+        em = discord.Embed(color=color, url=icon)
+        em.set_author(name=server.name, icon_url=icon)
+        em.set_image(url=icon)
+        try:
+            await ctx.send(embed=em)
+        except discord.HTTPException:
+            em_list = await embedtobox.etb(em)
+            for page in em_list:
+                await ctx.send(page)
+            try:
+                async with ctx.session.get(icon) as resp:
+                    image = await resp.read()
+                with io.BytesIO(image) as file:
+                    await ctx.send(file=discord.File(file, 'serverlogo.png'))
+            except discord.HTTPException:
+                await ctx.send(icon)        
         
 
 
