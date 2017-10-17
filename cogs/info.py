@@ -112,18 +112,27 @@ class Information:
         await ctx.send(embed=em)
 
 
-    @commands.command(aliases=['servericon'], no_pm=True)
+    @commands.command(aliases=['servericon'])
     async def serverlogo(self, ctx):
-        """Returns the server's logo image"""
+        '''Return the server's icon url.'''
         icon = ctx.guild.icon_url
-        em = discord.Embed(url=icon)
-        em.colour = (discord.Colour(0xed791d))
-        em.set_author(name=ctx.guild.guilder.name, icon_url=icon)
+        server = ctx.guild
+        em = discord.Embed(color=color, url=icon)
+        em.set_author(name=server.name, icon_url=icon)
         em.set_image(url=icon)
         try:
             await ctx.send(embed=em)
-        except:
-            return
+        except discord.HTTPException:
+            em_list = await embedtobox.etb(em)
+            for page in em_list:
+                await ctx.send(page)
+            try:
+                async with ctx.session.get(icon) as resp:
+                    image = await resp.read()
+                with io.BytesIO(image) as file:
+                    await ctx.send(file=discord.File(file, 'serverlogo.png'))
+            except discord.HTTPException:
+                await ctx.send(icon)
 
 
 def setup(bot):
