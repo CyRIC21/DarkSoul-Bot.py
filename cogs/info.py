@@ -139,7 +139,6 @@ class Information:
         embed.add_field(name='Channels', value=f'{text} text\n{voice} voice\n{dm} direct')
         embed.add_field(name='Github', value=github)
         embed.add_field(name='Discord', value=server)
-        embed.add_field(name='Website', value=website)
         embed.set_footer(text=f'Powered by discord.py {discord.__version__}')
         await ctx.send(embed=embed)        
 
