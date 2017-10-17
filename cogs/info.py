@@ -137,9 +137,6 @@ class Information:
         embed.add_field(name='Guilds', value=len(self.bot.guilds))
         embed.add_field(name='Members', value=f'{total_unique} total\n{total_online} online')
         embed.add_field(name='Channels', value=f'{text} text\n{voice} voice\n{dm} direct')
-        memory_usage = self.bot.process.memory_full_info().uss / 1024**2
-        cpu_usage = self.bot.process.cpu_percent() / psutil.cpu_count()
-        embed.add_field(name='Process', value=f'{memory_usage:.2f} MiB\n{cpu_usage:.2f}% CPU')
         embed.add_field(name='Github', value=github)
         embed.add_field(name='Discord', value=server)
         embed.add_field(name='Website', value=website)
