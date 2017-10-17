@@ -127,23 +127,13 @@ class Information:
         voice = len(voice_channels)
         dm = len(self.bot.private_channels)
 
-        now = datetime.datetime.utcnow()
-        delta = now - self.bot.uptime
-        hours, remainder = divmod(int(delta.total_seconds()), 3600)
-        minutes, seconds = divmod(remainder, 60)
-        days, hours = divmod(hours, 24)
 
-        fmt = '{h}h {m}m {s}s'
-        if days:
-            fmt = '{d}d ' + fmt
-        uptime = fmt.format(d=days, h=hours, m=minutes, s=seconds)
 
         github = '[Click Here](https://github.com/freetnt5852/darksoul-bot/)'
         server = '[Click Here](https://discord.gg/xAFbcWn)'
 
 
         embed.add_field(name='Author', value='Free TNT#5796')
-        embed.add_field(name='Uptime', value=uptime)
         embed.add_field(name='Guilds', value=len(self.bot.guilds))
         embed.add_field(name='Members', value=f'{total_unique} total\n{total_online} online')
         embed.add_field(name='Channels', value=f'{text} text\n{voice} voice\n{dm} direct')
