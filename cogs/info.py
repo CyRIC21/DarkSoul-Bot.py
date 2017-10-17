@@ -159,6 +159,5 @@ class Information:
         
 
 
-
 def setup(bot):
     return bot.add_cog(Information(bot))
