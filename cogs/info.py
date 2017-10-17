@@ -143,7 +143,7 @@ class Information:
         '''Return the server's icon url.'''
         icon = ctx.guild.icon_url
         server = ctx.guild
-        em = discord.Embed(color=color, url=icon)
+        em = discord.Embed(url=icon)
         em.set_author(name=server.name, icon_url=icon)
         em.set_image(url=icon)
         try:
