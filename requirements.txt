@@ -3,3 +3,4 @@ wikipedia
 colorthief
 psutil
 emoji
+yarl=1.1.1
