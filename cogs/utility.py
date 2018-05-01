@@ -4,7 +4,6 @@ import textwrap
 import asyncio
 import psutil
 import random
-import pip
 import os
 import io
 from discord.ext import commands
